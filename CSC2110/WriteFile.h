@@ -16,7 +16,7 @@ class WriteFile
    public:
       WriteFile(const char* file_name);
       ~WriteFile();
-      void writeLine(CSC2110::String* line);
+      void writeLine(std::String* line);
       void close();
 };
 
