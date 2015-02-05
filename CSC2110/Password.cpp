@@ -29,7 +29,7 @@ void Password::guess(int try_password, int num_matches)
 
 int Password::getNumberOfPasswordsLeft()
 {
-	//return number of possible passwords remaining
+	return viable_words->size;
 }
 
 void Password::displayViableWords()
@@ -105,5 +105,5 @@ int Password::bestGuess()
 
 String* Password::getOriginalWord(int index)
 {
-	//get a word from the original list of all passwords
+	all_words->get(index);
 }
