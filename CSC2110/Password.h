@@ -19,10 +19,8 @@ private:
 	{
 		int matches = 0;
 		for (int i = 0; i < curr_word->length() - 1; i++)
-		{
-			if (word_guess->charAt(i) == curr_word->charAt(i) && curr_word != word_guess)
+			if (word_guess->charAt(i) == curr_word->charAt(i))
 				matches++;
-		}
 		
 		return matches;
 	}

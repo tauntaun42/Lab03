@@ -5,6 +5,7 @@ using namespace std;
 
 Password::Password()
 {
+	//give memory spaces to ListArray objects
 	all_words = new ListArray<String>();
 	viable_words = new ListArray<String>();
 	len = 0;
@@ -18,7 +19,7 @@ Password::~Password()
 
 void Password::addWord(String* word)
 {
-	if (all_words->isEmpty())
+	if (all_words->isEmpty()) //if empty, first word length = default length
 	{
 		len = word->length();
 		all_words->add(word);
@@ -31,14 +32,17 @@ void Password::addWord(String* word)
 	}
 }
 
+//try guessed password against viable words to get matches
 void Password::guess(int try_password, int num_matches)
 {
 	int matches = 0;
-	String* curr_password = all_words->get(try_password-1);
-	ListArrayIterator<String>* iter = all_words->iterator();
+	String* curr_password = all_words->get(try_password-1); //currently guessed password
+	ListArrayIterator<String>* iter = viable_words->iterator();
 	while (iter->hasNext())
 	{
-		String* to_try = iter->next();
+		String* to_try = iter->next(); //next word in viable_words to try
+		
+		//if words don't match enough or if ==, they are removed from poss passwords
 		if (getNumMatches(to_try, curr_password) < num_matches || to_try = curr_password)
 		{
 			viable_words->remove(to_try);
@@ -58,7 +62,7 @@ void Password::displayViableWords()
 	{
 		String* word = iter->next();
 		word->displayString();
-		cout << "\n";
+		cout << "\n"; //formatting
 	}
 }
 
