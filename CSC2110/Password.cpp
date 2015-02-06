@@ -25,7 +25,7 @@ void Password::addWord(String* word)
 		all_words->add(word);
 		viable_words->add(word);
 	}
-	if (!all_words->isEmpty() && word->length() == len)
+	else if (!all_words->isEmpty() && word->length() == len)
 	{
 		all_words->add(word);
 		viable_words->add(word);
