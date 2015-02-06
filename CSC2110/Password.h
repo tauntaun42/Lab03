@@ -15,7 +15,17 @@ private:
 	int len;  //the length of the first word entered is stored to check that all subsequent words have the same length
 
 	//a private helper method to report the number of character matches between two Strings
-	int getNumMatches(String* curr_word, String* word_guess);
+	int getNumMatches(String* curr_word, String* word_guess)
+	{
+		int matches = 0;
+		for (int i = 0; i < curr_word->length() - 1; i++)
+		{
+			if (word_guess->charAt(i) == curr_word->charAt(i) && curr_word != word_guess)
+				matches++;
+		}
+		
+		return matches;
+	}
 
 public:
 	Password(); //constructor

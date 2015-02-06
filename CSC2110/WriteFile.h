@@ -16,7 +16,7 @@ class WriteFile
    public:
       WriteFile(const char* file_name);
       ~WriteFile();
-      void writeLine(std::String* line);
+      void writeLine(String* line);
       void close();
 };
 

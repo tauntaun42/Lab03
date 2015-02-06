@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 
+
 Password::Password()
 {
 	all_words = new ListArray<String>();
@@ -17,28 +18,48 @@ Password::~Password()
 
 void Password::addWord(String* word)
 {
-	all_words->add(word);
+	if (all_words->isEmpty())
+	{
+		len = word->length();
+		all_words->add(word);
+		viable_words->add(word);
+	}
+	if (!all_words->isEmpty() && word->length() == len)
+	{
+		all_words->add(word);
+		viable_words->add(word);
+	}
 }
 
 void Password::guess(int try_password, int num_matches)
 {
-	//index of guessed word in the list of all
-	//number of matches reported by the game
-	//update viable passwords left
+	int matches = 0;
+	viable_words->removeAll();
+	String* curr_password = all_words->get(try_password-1);
+	ListArrayIterator<String>* iter = all_words->iterator();
+	while (iter->hasNext())
+	{
+		String* to_try = iter->next();
+		if (getNumMatches(to_try, curr_password) >= num_matches && getNumMatches(to_try, curr_password) != curr_password->length())
+		{
+			viable_words->add(to_try);
+		}
+	}
 }
 
 int Password::getNumberOfPasswordsLeft()
 {
-	return viable_words->size;
+	return viable_words->size();
 }
 
 void Password::displayViableWords()
 {
 	ListArrayIterator<String>* iter = viable_words->iterator();
-	while (iter->hasNext)
+	while (iter->hasNext())
 	{
 		String* word = iter->next();
 		word->displayString();
+		cout << "\n";
 	}
 }
 
