@@ -34,15 +34,14 @@ void Password::addWord(String* word)
 void Password::guess(int try_password, int num_matches)
 {
 	int matches = 0;
-	viable_words->removeAll();
 	String* curr_password = all_words->get(try_password-1);
 	ListArrayIterator<String>* iter = all_words->iterator();
 	while (iter->hasNext())
 	{
 		String* to_try = iter->next();
-		if (getNumMatches(to_try, curr_password) >= num_matches && getNumMatches(to_try, curr_password) != curr_password->length())
+		if (getNumMatches(to_try, curr_password) < num_matches || to_try = curr_password)
 		{
-			viable_words->add(to_try);
+			viable_words->remove(to_try);
 		}
 	}
 }
