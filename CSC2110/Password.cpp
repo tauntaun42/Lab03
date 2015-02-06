@@ -105,5 +105,5 @@ int Password::bestGuess()
 
 String* Password::getOriginalWord(int index)
 {
-	all_words->get(index);
+	return all_words->get(index);
 }
